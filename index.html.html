@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Virtual Lab: Sistem Ekskresi Manusia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fcefee;
+    }
+    header {
+      background-color: #c0392b;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .popup-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+    .menu {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 20px;
+    }
+    .menu button {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: none;
+      background-color: #e74c3c;
+      color: white;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .content {
+      padding: 20px;
+      background-color: #fff3f1;
+      margin: 20px;
+      border-radius: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+    .question {
+      margin: 10px 0;
+    }
+    .feedback {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .drag-drop {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    .molecule, .stage {
+      border: 2px dashed #c0392b;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 10px;
+      width: 150px;
+      min-height: 50px;
+      text-align: center;
+      background: #fff;
+    }
+    .molecule {
+      cursor: grab;
+    }
+    .correct {
+      background-color: #d4edda;
+    }
+    .incorrect {
+      background-color: #f8d7da;
+    }
+  </style>
+</head>
+<body>
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Selamat Datang di Virtual Lab</h2>
+      <p>Masukkan Nama dan Kelas Anda</p>
+      <input type="text" id="nama" placeholder="Nama" /><br /><br />
+      <input type="text" id="kelas" placeholder="Kelas" /><br /><br />
+      <button onclick="mulaiLab()">Mulai</button>
+    </div>
+  </div>
+
+  <header>
+    <h1>Virtual Lab: Sistem Ekskresi Manusia</h1>
+  </header>
+
+  <div class="menu">
+    <button onclick="tampilkan('teori')">Teori</button>
+    <button onclick="tampilkan('eksperimen')">Eksperimen</button>
+    <button onclick="tampilkan('evaluasi')">Tes & Evaluasi</button>
+    <button onclick="tampilkan('game')">Game</button>
+    <button onclick="tampilkan('galeri')">Galeri Urine</button>
+    <button onclick="tampilkan('laporan')">Laporan</button>
+  </div>
+
+  <!-- Teori -->
+  <div id="teori" class="content hidden" style="background:#ffe6e1">
+    <h2>🌟 Ekskresi: Pabrik Pembersih Tubuh Kita!</h2>
+    <p>Bayangkan tubuhmu seperti sebuah kota besar yang sibuk...</p>
+    <h3>🧠 Apa Itu Sistem Ekskresi?</h3>
+    <p>Ekskresi ialah proses pengeluaran zat sisa metabolisme...</p>
+    <p>✨ Ingat ya! Ekskresi beda dengan egesti...</p>
+    <h3>🚰 Organ-Organ Ekskresi dan Perannya</h3>
+    <ul>
+      <li>Ginjal: Menyaring darah dan membentuk urin.</li>
+      <li>Paru-Paru: Mengeluarkan CO₂ dan uap air.</li>
+      <li>Kulit: Mengeluarkan keringat (air, garam, urea).</li>
+      <li>Hati: Mengubah amonia jadi urea dan menghancurkan racun.</li>
+    </ul>
+    <h3>🎲 Mini Game Seru: Tebak Organ Ekskresi!</h3>
+    <p>Pertanyaan: Organ ekskresi manakah yang menghasilkan zat sisa cairan dan gas?</p>
+    <p>Jawab: Paru-paru!</p>
+    <h3>💡 Tips Belajar</h3>
+    <ul>
+      <li>Buat mind map organ ekskresi.</li>
+      <li>Ukur banyaknya keringat setelah olahraga ringan.</li>
+      <li>Tonton video animasi ginjal di YouTube Edu!</li>
+    </ul>
+  </div>
+
+  <!-- Eksperimen -->
+  <div id="eksperimen" class="content hidden" style="background:#ffe6e1">
+    <h2>🧪 Eksperimen Interaktif</h2>
+    <p>Pilih salah satu eksperimen di bawah ini untuk memulai simulasi:</p>
+    <button onclick="tampilkanUji('ujiGinjal')">Mulai Uji Ginjal</button>
+    <button onclick="tampilkanUji('ujiKulit')">Mulai Uji Kulit</button>
+    <button onclick="tampilkanUji('ujiParu')">Mulai Uji Paru-paru</button>
+    <button onclick="tampilkanUji('ujiHati')">Mulai Uji Hati</button>
+
+    <div id="ujiGinjal" class="hidden">
+      <h3>🔹 Uji Urine (Ginjal)</h3>
+      <p>🔬 Uji Biuret → deteksi protein (indikasi gangguan ginjal)</p>
+      <p>🔬 Uji Benedict → deteksi glukosa (indikasi diabetes)</p>
+      <p>🔬 Warna → kuning muda (normal), keruh (infeksi)</p>
+    </div>
+    <div id="ujiKulit" class="hidden">
+      <h3>🔹 Uji Keringat (Kulit)</h3>
+      <p>💧 Rasa asin → indikasi NaCl</p>
+      <p>🔬 Kertas kobalt(II) klorida → biru ke merah (ada air)</p>
+    </div>
+    <div id="ujiParu" class="hidden">
+      <h3>🔹 Uji Pernapasan (Paru-Paru)</h3>
+      <p>🫧 Tiup ke air kapur → air kapur keruh (ada CO₂)</p>
+    </div>
+    <div id="ujiHati" class="hidden">
+      <h3>🔹 Uji Empedu (Hati)</h3>
+      <p>🔬 Warna empedu → hijau kekuningan (bilirubin)</p>
+    </div>
+  </div>
+
+  <!-- Evaluasi -->
+  <div id="evaluasi" class="content hidden" style="background:#ffe6e1">
+    <h2>🎯 Tes & Evaluasi</h2>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Aku bekerja seperti ilmuwan...</p>
+        <input type="radio" name="q1" value="A">A. Ginjal<br>
+        <input type="radio" name="q1" value="B">B. Hati<br>
+        <input type="radio" name="q1" value="C">C. Kulit<br>
+        <input type="radio" name="q1" value="D">D. Paru-paru
+      </div>
+      <div class="question">
+        <p>2. Aku membantu kamu menghembuskan...</p>
+        <input type="radio" name="q2" value="A">A. Paru-paru<br>
+        <input type="radio" name="q2" value="B">B. Ginjal<br>
+        <input type="radio" name="q2" value="C">C. Kulit<br>
+        <input type="radio" name="q2" value="D">D. Hati
+      </div>
+      <div class="question">
+        <p>3. Aku juga buang zat sisa lewat keringat.</p>
+        <input type="radio" name="q3" value="A">A. Hati<br>
+        <input type="radio" name="q3" value="B">B. Ginjal<br>
+        <input type="radio" name="q3" value="C">C. Kulit<br>
+        <input type="radio" name="q3" value="D">D. Paru-paru
+      </div>
+      <div class="question">
+        <p>4. Aku menyaring darah dan menghasilkan urin.</p>
+        <input type="radio" name="q4" value="A">A. Ginjal<br>
+        <input type="radio" name="q4" value="B">B. Kulit<br>
+        <input type="radio" name="q4" value="C">C. Paru-paru<br>
+        <input type="radio" name="q4" value="D">D. Jantung
+      </div>
+      <button type="button" onclick="hitungSkor()">Lihat Skor</button>
+    </form>
+    <div id="skorHasil" class="feedback"></div>
+  </div>
+
+  <!-- Game -->
+  <div id="game" class="content hidden" style="background:#ffe6e1">
+    <h2>🎮 Urine Adventure: Drag & Drop Game</h2>
+    <p>Seret molekul ke tahapan ekskresi yang sesuai!</p>
+    <div class="drag-drop">
+      <div class="molecule" draggable="true" ondragstart="drag(event)" id="glukosa">Glukosa</div>
+      <div class="molecule" draggable="true" ondragstart="drag(event)" id="urea">Urea</div>
+      <div class="molecule" draggable="true" ondragstart="drag(event)" id="air">Air</div>
+      <div class="molecule" draggable="true" ondragstart="drag(event)" id="protein">Protein</div>
+    </div>
+    <div class="drag-drop">
+      <div class="stage" ondrop="drop(event, 'filtrasi')" ondragover="allowDrop(event)">Filtrasi</div>
+      <div class="stage" ondrop="drop(event, 'reabsorpsi')" ondragover="allowDrop(event)">Reabsorpsi</div>
+      <div class="stage" ondrop="drop(event, 'augmentasi')" ondragover="allowDrop(event)">Augmentasi</div>
+    </div>
+    <div id="feedbackGame" class="feedback"></div>
+  </div>
+
+  <!-- Galeri -->
+  <div id="galeri" class="content hidden" style="background:#ffe6e1">
+    <h2>🧪 Galeri Urine & Diagnosa</h2>
+    <ul>
+      <li>💛 Kuning Muda: Normal</li>
+      <li>💦 Jernih: Overhidrasi</li>
+      <li>🍋 Kuning Gelap: Dehidrasi ringan</li>
+      <li>🍊 Kuning Pekat: Dehidrasi parah</li>
+      <li>🩸 Merah Muda: Hematuria</li>
+      <li>🟢 Hijau/Biru: Infeksi / Obat</li>
+      <li>🤢 Coklat Tua: Penyakit hati</li>
+      <li>🧼 Berbusa: Proteinuria</li>
+    </ul>
+  </div>
+
+  <!-- Laporan -->
+  <div id="laporan" class="content hidden" style="background:#ffe6e1">
+    <h2>📄 Laporan Praktikum Otomatis</h2>
+    <p>Silakan unduh atau unggah laporan hasil kegiatan Anda di sini:</p>
+    <a href="https://drive.google.com/drive/folders/1VwAVsrNvl-VyZFemkKsoIrN8lsvAfkul" target="_blank">📁 Kumpulkan Laporan di Google Drive</a>
+  </div>
+
+  <script>
+    function mulaiLab() {
+      document.getElementById('popup').style.display = 'none';
+    }
+
+    function tampilkan(id) {
+      const sections = ['teori', 'eksperimen', 'evaluasi', 'game', 'galeri', 'laporan'];
+      sections.forEach(s => document.getElementById(s).classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function tampilkanUji(id) {
+      const ujiSections = ['ujiGinjal', 'ujiKulit', 'ujiParu', 'ujiHati'];
+      ujiSections.forEach(s => document.getElementById(s).classList.add('hidden'));
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function hitungSkor() {
+      const jawaban = { q1: 'B', q2: 'A', q3: 'C', q4: 'A' };
+      let skor = 0;
+      Object.keys(jawaban).forEach(q => {
+        const pilihan = document.querySelector(`input[name="${q}"]:checked`);
+        if (pilihan && pilihan.value === jawaban[q]) skor++;
+      });
+      document.getElementById('skorHasil').innerText = `Skor Anda: ${skor}/4`;
+    }
+
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev, stage) {
+      ev.preventDefault();
+      const data = ev.dataTransfer.getData("text");
+      const correctMapping = {
+        glukosa: 'reabsorpsi',
+        urea: 'augmentasi',
+        air: 'reabsorpsi',
+        protein: 'filtrasi'
+      };
+      const feedback = document.getElementById('feedbackGame');
+      if (correctMapping[data] === stage) {
+        feedback.innerText = `✅ Benar! ${data} masuk ke tahap ${stage}. Hebat!`;
+      } else {
+        feedback.innerText = `❌ Salah! Coba cek lagi jalurnya untuk ${data}.`;
+      }
+    }
+  </script>
+</body>
+</html>
